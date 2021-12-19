@@ -1,3 +1,4 @@
+
 const NodeMediaServer = require('node-media-server');
 // config = require('./config/default').rtmp_server;
 const config = {
@@ -31,7 +32,7 @@ const config = {
       }
   }
 };
-
+console.log('starting node media server');
 nms = new NodeMediaServer(config);
 
 nms.on('prePublish', async (id, StreamPath, args) => {

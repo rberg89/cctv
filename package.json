@@ -7,7 +7,7 @@
     "dev": "concurrently \"nodemon --inspect ./bin/www\" \"npm run frontend\"",
     "backend": "nodemon --inspect ./bin.www",
     "frontend": "cd frontend && ng serve --proxy-config proxy.conf.json",
-    "frbuild": "cd frontend && ng build --configuration=production && cd .."
+    "frbuild": "cd frontend && node --max_old_space_size=900 node_modules/@angular/cli/bin/ng b --configuration=production && cd .."
   },
   "dependencies": {
     "concurrently": "^6.5.1",
