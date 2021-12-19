@@ -9,6 +9,9 @@ const express = require('express'),
 
 require('dotenv').config();
 
+const nms = require('./utils/nms');
+nms.run();
+
 //CORS for dev environment, whitelist angular dev server
 var corsOptions = {
   origin: 'http://localhost:4200', //todo make dynamic?
@@ -24,13 +27,15 @@ client.connect(err => {
   client.close();
 });
 
+
+
 const usersRouter = require('./routes/users');
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'dist')));
 
 // app.use('/', indexRouter);
 app.use('/users', usersRouter);
