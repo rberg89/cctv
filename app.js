@@ -7,6 +7,8 @@ const express = require('express'),
   app = express(),
   cors = require('cors');
 
+require('dotenv').config();
+
 //CORS for dev environment, whitelist angular dev server
 var corsOptions = {
   origin: 'http://localhost:4200', //todo make dynamic?
@@ -14,7 +16,7 @@ var corsOptions = {
 }
 app.use(cors(corsOptions));
 
-const uri = 'mongodb+srv://' + MONGOUN + ':<' + MONGOPW + '>@cluster1337.budqz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const uri = 'mongodb+srv://' + process.env.MONGOUN + ':<' + process.env.MONGOPW + '>@cluster1337.budqz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 client.connect(err => {
   const collection = client.db("nodeStream").collection("test");
